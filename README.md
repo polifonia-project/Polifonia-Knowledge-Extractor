@@ -63,6 +63,7 @@ Some statistics of our graph bank can be found in the following table:
 
 ## Installation
 > git clone https://github.com/polifonia-project/Polifonia-Knowledge-Extractor
+
 > pip install -r requirements.txt
 ## How to use
 The parameters of the model are the following:
