@@ -1,5 +1,6 @@
 import penman
 import csv
+import argparse
 
 gb = penman.load('data/graph_bank_filtered.txt')
 print(len(gb), 'graphs imported')
@@ -14,7 +15,7 @@ def graph2dict(graph):
         g[triple[0]][triple[1]] = triple[2]
     return g
 
-def interrogate(propb_pred):
+def interrogate(propb_pred, save_to_file):
     final_triples = []
     for graph in gb:
         graph_dict = graph2dict(graph)
@@ -32,14 +33,23 @@ def interrogate(propb_pred):
                         triples_.append(' ~ '.join([propb_pred, k, wiki]))
                     elif name != '':
                         triples_.append(' ~ '.join([propb_pred, k, name]))
-        if triples_ != []:
+        if triples_ != [] :
             print(triples_)
-            final_triples.append([graph.metadata['page_id'], graph.metadata['nsent'], ' | '.join(triples_), graph.metadata['snt']])
+            final_triples.append([graph.metadata['page_id'], graph.metadata['nsent'], len(triples_), ' | '.join(triples_), graph.metadata['snt']])
             #final_triples.append(triples_)
 
 
-    with open('out/' + propb_pred + '.csv', 'w') as fw:
-        writer = csv.writer(fw, delimiter='\t')
-        writer.writerows(final_triples)
+    if save_to_file == 'yes':
+        with open('out/' + propb_pred + '.tsv', 'w') as fw:
+            writer = csv.writer(fw, delimiter='\t')
+            writer.writerows([['doc_id', 'sent_id', 'number of triples', 'triples', 'sentence']] + final_triples)
 
-interrogate('play-11')
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--propbank_predicate', type=str, required=True)
+    parser.add_argument('--save_to_file', type=str, default='yes')
+    return parser.parse_args()
+
+if __name__ == '__main__':
+    args = parse_args()
+    interrogate(args.propbank_predicate, args.save_to_file)

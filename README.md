@@ -43,3 +43,49 @@ __Step 5 - graph bank__.
 The final step of our pipeline consist in obtaining a large set of (prosumibly) good quality graphs that can be queried and used in other applciations such as Knowledge Graph construction and/or Question Answering.
 
 ## The graph bank
+The filtering procedure allowed us to retain 26 588 sentences from the 125 683 parsed sentences.
+We recall that the high number of discarded sentences is due to noise in the input sentences, mainly due to OCR errors.
+
+### Statistics
+
+Some statistics of our graph bank can be found in the following table:
+
+| Module | Lang |  #parsed sentence | #triples |
+| --- | --- |  --- | --- |
+| Encyclopedic | English |  10.015 | 298.369 |
+| Books | English |  8.443 | 198.862 |
+|Periodicals | English |  6.398 | 109.623 |
+|Child (Pilots) | English |  1.227 | 24.049 |
+|Meetups (Pilots) | English |  464 | 13.903 |
+|MusicBO (Pilots) | English |  41 | 1.297 |
+| Overall | English | 26.588 | 646.103 |
+
+
+## Installation
+> git clone https://github.com/polifonia-project/Polifonia-Knowledge-Extractor
+> pip install -r requirements.txt
+## How to use
+The parameters of the model are the following:
+
+--propbank-predicate: it is the **[PropBank](http://propbank.github.io)** predicate to search in the graph bank. It is a required parameter. The complete list of PropBank predicates together with their description and role set can be found **[here](https://verbs.colorado.edu/propbank/framesets-english-aliases/)**. 
+
+--save_to_file: this parameter indicates if the results of the search has to saved into a tsv file (located in the **out** folder)
+
+## The results
+The results of each search can be saved in a specific file inside the **out** folder.
+The name of the file corresponds to the PropBank predicate used for the search followed by a **.tsv** extension.
+The output file has 5 fields:
+1. document id: the ID of the document from which the information has been extracted
+2. sentence id: the ID of the sentence from which the information has been extracted
+3. number of triples: the number of triples (AMR node name, AMR relation, AMR node name) extracted from the sentence
+4. triples: the extracted triples
+5. sent: the sentence from wich the triples have been extracted
+
+### Example
+As an example we can use the **play-11** PropBank predicate
+
+> python search.py --propbank_predicate play-11
+
+With this search 311 sentences are selected and we can easily discover that Antonio_Buonomo plays an instrument that is the clarinet or that Georges Barrère played in the New York Symphony Orchestra.
+
+![pipeline](figs/barrère.png)
