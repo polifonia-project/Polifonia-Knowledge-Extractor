@@ -80,7 +80,7 @@ The output file has 5 fields:
 2. sentence id: the ID of the sentence from which the information has been extracted
 3. number of triples: the number of triples (AMR node name, AMR relation, AMR node name) extracted from the sentence
 4. triples: the extracted triples
-5. sent: the sentence from wich the triples have been extracted
+5. sent: the sentence from which the triples have been extracted
 
 ### Example
 As an example we can use the **play-11** PropBank predicate
