@@ -19,7 +19,7 @@ credits:
 # Polifonia Knowledge Extractor
 
 The Polifonia Knowledge Extractor is software that allows the extraction of knowledge from text.
-It uses Abstract Meaning Representation (AMR) to parse sentences into semantic graphs and offers the possibility to search within large AMR graph banks.
+It uses Abstract Meaning Representation (AMR) to parse sentences into semantic graphs and offers the possibility to search within large AMR graphs banks.
 
 ### Pipeline
 
@@ -27,7 +27,7 @@ The pipeline of the Polifonia Knowledge Extractor is depicted in the figure belo
 
 ![pipeline](figs/pipeline.png)
 
-__Step 1 - input__.
+__Step 1 - corpus (input)__.
 The model takes as input a textual corpus.
 For our work, we used as corpus the **[Polifonia Textual Corpus](https://github.com/polifonia-project/Polifonia-Corpus)** (PTC).
 
@@ -58,7 +58,7 @@ The rationale behind this is that if, starting from the generated graph, the mod
 Another strategy to validate the quality of the AMR graphs consists in developing a web application that allows human validators to check the correctness of specific portions of the graphs.
 
 __Step 5 - graph bank__.
-The final step of our pipeline consists in obtaining a large set of presumably) good quality graphs that can be queried and used in other applications such as Knowledge Graph construction and/or Question Answering.
+The final step of our pipeline consists in obtaining a large set of (presumably) good quality graphs that can be queried and used in other applications such as Knowledge Graph construction and/or Question Answering.
 
 ## The graph bank
 The filtering procedure allowed us to retain 26 588 sentences from the 125 683 parsed sentences.
