@@ -38,11 +38,17 @@ For this reason, we decided to conduct our experiments on a sample of the PTC, t
 __Step 3 - pre-processing (cleaning)__.
 The PTC contains a large portion of historical documents obtained using Optical Character Recognition technologies.
 It thus contains errors that must be corrected in order to avoid parsing inaccuracies.
+As a first step towards post-OCR correction, we focused on fixing the major errors.
+As the input unit to the Text2AMR parsing step, as implemented in our pipeline, is the sentence, we paid specific attention to OCR errors in source texts that impacted sentence cohesion.
+We noticed that periodicals' format peculiarities, such as the arrangement of text into two or more columns on a single page, systematically caused incorrect sentence break issues.
+Driven by the hypothesis that reconstructing sentence cohesion could enhance the output quality of our Text2AMR parsing step, we decided to implement a minimal rule-based strategy to support the reconstruction of sentence cohesion while preserving source text paragraph breaks. 
+This strategy is released and described in **[Post-OCR Correction Rules](https://github.com/polifonia-project/rulebased-postocr-corrector)** repository.
 Furthermore, the PTC contains long documents that cannot be parsed as a whole but have to be split into sentences.
 This step leads to possible loss of information, especially regarding the use of coreferences.
 For this reason, we decided to adopt a coreference resolution module and substitute pronouns with actual names.
 As coreference resolution module we adopted **[SpaCy neuralcoref](https://spacy.io/universe/project/neuralcoref)**.
 We focused only on nouns and pronouns mentioned in a span of 5 sentences.
+
 
 __Step 3 - parsing__.
 Once the sentences have been cleaned, and pronouns have been replaced with proper names, it is possible to pass them to an AMR parser.
