@@ -2,15 +2,22 @@
 component-id: Polifonia-Knowledge-Extractor
 name: Polifonia Knowledge Extractor
 description: Polifonia Knowledge Extractor pipeline documentation, output AMR graph bank's description and search script.
-type: Repository
-release-date: 26/08/2022
+type: SoftwareLibrary
+release-date: 28/06/2022
 release-number: v1.0
 work-package: 
 - WP4
-licence: CC BY
-links:
-- https://github.com/polifonia-project/Polifonia-Knowledge-Extractor
-credits:
+licence:
+- CC-BY_v4
+related-components:
+- persona:
+  - Valeriana
+  - Carolina
+- extends:
+  - Polifonia-Corpus
+bibliography:
+- deliverable-document: "D4.5 Software for knowledge extraction from text – context – 1st version"
+contributors:
 - https://github.com/roccotrip
 - https://github.com/arianna-graciotti
 - https://github.com/EleonoraMarzi
